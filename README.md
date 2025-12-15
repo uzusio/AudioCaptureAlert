@@ -1,52 +1,45 @@
-﻿# AudioCaptureAlert
-OBS Studio plugin providing real-time audio input monitoring with configurable silence detection and alert notifications.
+# AudioCaptureAlert
 
-## Use Cases
-- Monitors and alerts if Mic becomes unplugged or runs out of battery.
-- Monitors and alerts if an audio capture device is not playing audio (Double PC streaming setup).
+OBS Studio用のPythonプラグイン。オーディオ入力を監視し、無音が続いたらWindows通知でお知らせします。
 
-## Features
-- Real-time monitoring of audio input devices
-- Configurable delay before showing source selected for alert
-- Select an image or media source for alert
-- Can be enabled only when recording or streaming automatically
+## 用途
 
-## Installation
-1. Copy the plugin files to your OBS plugins directory
-2. Add obs.dll to system path
-    This plugin dynamically links into the obs library at runtime so make sure obs.
-        
-        To add `obs.dll` to the system path in Windows, follow these steps:
+- マイクが抜けた・バッテリー切れになった時にアラート
+- オーディオキャプチャデバイスが音を出していない時にアラート（2PC配信環境など）
 
-        1. **Locate `obs.dll`**: Find the directory where `obs.dll` is located. This is usually in the `bin` folder of your OBS Studio installation directory.
-        (Right click obs select open file location)
+## 機能
 
-        2. **Open System Environment Variables**:
-        - Right-click on the `This PC` or `My Computer` icon on your desktop or in File Explorer.
-        - Select `Properties`.
-        - Click on `Advanced system settings` on the left side.
-        - In the System Properties window, click on the `Environment Variables` button.
+- オーディオ入力デバイスのリアルタイム監視
+- 無音判定時間の設定（秒単位）
+- Windows通知によるアラート
+- オプションで画像/メディア/映像ソースの表示切替
+- 配信/録画中のみ有効にするオプション
 
-        3. **Edit the System Path**:
-        - In the Environment Variables window, under the `System variables` section, find the variable named `Path` and select it.
-        - Click on the `Edit` button.
-        - In the Edit Environment Variable window, click on the `New` button.
-        - Enter the full path to the directory containing `obs.dll` (e.g., `C:\Program Files\obs-studio\bin`).
+## インストール
 
-        4. **Save Changes**:
-        - Click `OK` to close each of the open windows.
-        - Restart PC may be required, but was not for me.
+### 1. Pythonの設定
 
-2. Restart OBS Studio
-3. Configure through OBS settings
-NOTES:
-    This is a python plugin for OBS. You might have to install python and link it in the Tools->Scripts - Python Settings of OBS.
+OBSのPythonスクリプト機能を使用します。
 
-## Usage
-1. Select audio input device to monitor
-2. Set silence detection threshold
-3. Choose alert (Image or Media Source)
-4. Save settings and enable monitoring
+1. OBSを開く
+2. ツール → スクリプト → Python設定タブ
+3. Pythonのインストールパスを設定
 
-## Support
-For issues or feature requests, please open an issue on GitHub.
+### 2. スクリプトを読み込む
+
+1. ツール → スクリプト → 「+」ボタン
+2. `AudioCaptureAlert.py`を選択
+
+> **注意**: スクリプトが読み込めない場合は、`obs.dll`のあるフォルダ（通常 `C:\Program Files\obs-studio\bin\64bit`）をシステムのPATH環境変数に追加してください。
+
+## 使い方
+
+1. 監視するオーディオソースを選択
+2. 無音判定時間を設定（デフォルト: 30秒）
+3. 通知メッセージをカスタマイズ（任意）
+4. 「プラグインを有効にする」をON
+5. 配信/録画を開始すると監視が始まります
+
+## サポート
+
+問題や機能リクエストがあれば、GitHubでIssueを作成してください。

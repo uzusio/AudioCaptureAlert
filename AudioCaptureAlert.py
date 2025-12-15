@@ -306,7 +306,7 @@ def script_unload():
         print("No volmeter to clean up.")
 
 def script_defaults(settings):
-    obs.obs_data_set_default_int(settings, "tick_interval", 10)  # Default to 10 seconds
+    obs.obs_data_set_default_int(settings, "tick_interval", 3)  # Default to 3 seconds
     obs.obs_data_set_default_int(settings, "silence_threshold", 30)  # Default to 30 seconds
     obs.obs_data_set_default_bool(settings, "enable_windows_notification", True)
     obs.obs_data_set_default_string(settings, "notification_title", "OBS マイク警告")

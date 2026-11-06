@@ -23,7 +23,9 @@ import subprocess
 import threading
 
 # Load the OBS library
-obsffi = CDLL(find_library("obs"))
+# find_library は PATH しか探さないので、OBS 本体のフォルダが PATH に無いと None になる。
+# そのときは名前で読む（Windows は実行ファイルのフォルダ＝OBS の bin から obs.dll を探す）
+obsffi = CDLL(find_library("obs") or "obs")
 G = SimpleNamespace()
 
 def wrap(funcname, restype, argtypes):
